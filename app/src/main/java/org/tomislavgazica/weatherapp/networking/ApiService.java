@@ -1,5 +1,6 @@
 package org.tomislavgazica.weatherapp.networking;
 
+import org.tomislavgazica.weatherapp.model.ForecastResponse;
 import org.tomislavgazica.weatherapp.model.WeatherResponse;
 import org.tomislavgazica.weatherapp.util.Constants;
 
@@ -14,4 +15,8 @@ public interface ApiService {
 
     @GET("/data/2.5/weather")
     Call<WeatherResponse> getWeatherFromGps(@Query(Constants.APP_ID_KEY) String apiKey, @Query("lat") double latitude, @Query("lon") double longitude);
+
+    @GET("/data/2.5/forecast")
+    Call<ForecastResponse> getForecast(@Query(Constants.APP_ID_KEY) String apiKey, @Query("q") String city);
+
 }

@@ -7,7 +7,7 @@ import org.tomislavgazica.weatherapp.model.WeatherResponse;
 
 public interface WeatherDetailsContract {
 
-    interface View{
+    interface View {
 
         void onNetworkFailure();
 
@@ -31,7 +31,7 @@ public interface WeatherDetailsContract {
 
     }
 
-    interface Presenter{
+    interface Presenter {
 
         void setGpsUtil(Context context, Activity activity);
 

@@ -1,5 +1,6 @@
 package org.tomislavgazica.weatherapp.interactor;
 
+import org.tomislavgazica.weatherapp.model.ForecastResponse;
 import org.tomislavgazica.weatherapp.model.WeatherResponse;
 import org.tomislavgazica.weatherapp.networking.ApiService;
 import org.tomislavgazica.weatherapp.util.Constants;
@@ -10,7 +11,7 @@ public class ApiInteractorImpl implements ApiInteractor {
 
     private final ApiService apiService;
 
-    public ApiInteractorImpl(ApiService apiService){
+    public ApiInteractorImpl(ApiService apiService) {
         this.apiService = apiService;
     }
 
@@ -22,5 +23,10 @@ public class ApiInteractorImpl implements ApiInteractor {
     @Override
     public void getWeatherFromGps(Callback<WeatherResponse> callback, double latitude, double longitude) {
         apiService.getWeatherFromGps(Constants.API_KEY_OPENWEATHERMAPS, latitude, longitude).enqueue(callback);
+    }
+
+    @Override
+    public void getForecast(Callback<ForecastResponse> callback, String city) {
+        apiService.getForecast(Constants.API_KEY_OPENWEATHERMAPS, city).enqueue(callback);
     }
 }

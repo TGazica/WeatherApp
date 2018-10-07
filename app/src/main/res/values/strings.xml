@@ -19,4 +19,14 @@
     <string name="percent">%</string>
     <string name="speed_unit">km/h</string>
     <string name="location_permission_denied">Location denied</string>
+    <string name="autocomplete_hint">Please enter preferred city</string>
+    <string name="open_maps_icon_description">Open google maps</string>
+    <string name="item_wind_direction_pointer">Item wind direction pointer</string>
+    <string name="time_sample">00:00</string>
+    <string name="presure_test_item">1000</string>
+    <string name="item_humidity_text">30.5%</string>
+    <string name="wind_test_text">30 km/h</string>
+    <string name="date_text">20.12.</string>
+    <string name="gps_error">Error fetching data</string>
+    <string name="weather_forecast_title">Weather forecast</string>
 </resources>

@@ -16,6 +16,7 @@ import com.bumptech.glide.Glide;
 import org.tomislavgazica.weatherapp.App;
 import org.tomislavgazica.weatherapp.R;
 import org.tomislavgazica.weatherapp.presentation.WeatherDetailsPresenter;
+import org.tomislavgazica.weatherapp.ui.forecast.OnForecastCall;
 import org.tomislavgazica.weatherapp.util.Constants;
 
 import butterknife.BindView;
@@ -59,6 +60,8 @@ public class WeatherDetailsFragment extends Fragment implements WeatherDetailsCo
 
     private WeatherDetailsContract.Presenter presenter;
 
+    private OnForecastCall listener;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -82,9 +85,17 @@ public class WeatherDetailsFragment extends Fragment implements WeatherDetailsCo
         unbinder.unbind();
     }
 
+    public void setListener(OnForecastCall listener) {
+        this.listener = listener;
+    }
+
     @OnClick(R.id.weather_fragment_refresh_data)
-    public void refreshData(){
+    public void refreshData() {
         presenter.refreshWeather();
+    }
+
+    public void refreshData(double latitude, double longitude) {
+        presenter.getWeatherFromNet(latitude, longitude);
     }
 
     @Override
@@ -142,5 +153,10 @@ public class WeatherDetailsFragment extends Fragment implements WeatherDetailsCo
     @Override
     public void setDescriptionValues(String descriptionValues) {
         weatherFragmentWeatherDescription.setText(descriptionValues.toUpperCase());
+    }
+
+    @OnClick(R.id.weather_fragment_five_day_data_button)
+    public void showFiveDayForecast(){
+        listener.getForecast();
     }
 }

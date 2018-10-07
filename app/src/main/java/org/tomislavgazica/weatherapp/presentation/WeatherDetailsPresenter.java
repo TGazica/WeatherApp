@@ -8,6 +8,7 @@ import org.tomislavgazica.weatherapp.interactor.ApiInteractor;
 import org.tomislavgazica.weatherapp.model.WeatherResponse;
 import org.tomislavgazica.weatherapp.ui.weatherCurrent.WeatherDetailsContract;
 import org.tomislavgazica.weatherapp.util.Constants;
+import org.tomislavgazica.weatherapp.util.ConversionUtil;
 import org.tomislavgazica.weatherapp.util.GpsListener;
 import org.tomislavgazica.weatherapp.util.GpsUtil;
 
@@ -23,7 +24,7 @@ public class WeatherDetailsPresenter implements WeatherDetailsContract.Presenter
 
     private WeatherDetailsContract.View view;
 
-    public WeatherDetailsPresenter(ApiInteractor apiInteractor){
+    public WeatherDetailsPresenter(ApiInteractor apiInteractor) {
         this.apiInteractor = apiInteractor;
     }
 
@@ -60,7 +61,7 @@ public class WeatherDetailsPresenter implements WeatherDetailsContract.Presenter
         return new Callback<WeatherResponse>() {
             @Override
             public void onResponse(Call<WeatherResponse> call, Response<WeatherResponse> response) {
-                if (response.body() != null){
+                if (response.body() != null) {
                     getWeather(response.body());
                 }
             }
@@ -129,17 +130,17 @@ public class WeatherDetailsPresenter implements WeatherDetailsContract.Presenter
 
     @Override
     public void getCurrentTemperatureValues(double temperatureValues) {
-        view.setCurrentTemperatureValues(toCelsiusFromKelvin(temperatureValues));
+        view.setCurrentTemperatureValues(ConversionUtil.toCelsiusFromKelvin(temperatureValues));
     }
 
     @Override
     public void getMinTemperatureValues(double minTemperatureValues) {
-        view.setMinTemperatureValues(toCelsiusFromKelvin(minTemperatureValues));
+        view.setMinTemperatureValues(ConversionUtil.toCelsiusFromKelvin(minTemperatureValues));
     }
 
     @Override
     public void getMaxTemperatureValues(double maxTemperatureValues) {
-        view.setMaxTemperatureValues(toCelsiusFromKelvin(maxTemperatureValues));
+        view.setMaxTemperatureValues(ConversionUtil.toCelsiusFromKelvin(maxTemperatureValues));
     }
 
     @Override
@@ -155,7 +156,7 @@ public class WeatherDetailsPresenter implements WeatherDetailsContract.Presenter
 
     @Override
     public void getWindValues(double windValues, double direction) {
-        view.setWindValues(toKmhFromMph(windValues), direction);
+        view.setWindValues(ConversionUtil.toKmhFromMph(windValues), direction);
     }
 
     @Override
@@ -168,19 +169,13 @@ public class WeatherDetailsPresenter implements WeatherDetailsContract.Presenter
         view.setDescriptionValues(descriptionValues);
     }
 
-    private String toCelsiusFromKelvin(double temperature) {
-        DecimalFormat REAL_FORMATTER = new DecimalFormat("0.#");
-        return REAL_FORMATTER.format(temperature - 273);
-    }
-
-    private String toKmhFromMph(double speed){
-        DecimalFormat REAL_FORMATTER = new DecimalFormat("0.#");
-        return REAL_FORMATTER.format(speed * 1.60934);
-    }
-
     @Override
     public void onLocationSuccess() {
-        getWeatherFromNet(App.getLatitude(),App.getLongitude());
+        if (App.getCurrentCity() != null) {
+            getWeatherFromNet(App.getCurrentCity());
+        } else {
+            getWeatherFromNet(App.getLatitude(), App.getLongitude());
+        }
     }
 
     @Override

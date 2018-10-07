@@ -6,6 +6,7 @@ import org.tomislavgazica.weatherapp.interactor.ApiInteractor;
 import org.tomislavgazica.weatherapp.interactor.ApiInteractorImpl;
 import org.tomislavgazica.weatherapp.networking.ApiService;
 import org.tomislavgazica.weatherapp.networking.RetrofitUtil;
+
 import retrofit2.Retrofit;
 
 public class App extends Application {
@@ -41,7 +42,7 @@ public class App extends Application {
         return sInstance;
     }
 
-    public static ApiInteractor getApiInteractor(){
+    public static ApiInteractor getApiInteractor() {
         return apiInteractor;
     }
 
