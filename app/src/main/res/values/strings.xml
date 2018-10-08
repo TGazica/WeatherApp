@@ -22,7 +22,7 @@
     <string name="autocomplete_hint">Please enter preferred city</string>
     <string name="open_maps_icon_description">Open google maps</string>
     <string name="item_wind_direction_pointer">Item wind direction pointer</string>
-    <string name="time_sample">00:00</string>
+    <string name="time_sample">00 h</string>
     <string name="presure_test_item">1000</string>
     <string name="item_humidity_text">30.5%</string>
     <string name="wind_test_text">30 km/h</string>
@@ -32,4 +32,6 @@
     <string name="temperature_image">Temperature image</string>
     <string name="humidity_image">Humidity image</string>
     <string name="pressure_image">Pressure image</string>
+    <string name="temp_test_text">30.2 °C</string>
+    <string name="_5_day_forecast_button">5 day forecast</string>
 </resources>

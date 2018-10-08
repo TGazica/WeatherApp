@@ -10,7 +10,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:text="@string/city_name_test"
         android:textColor="#FFF"
         android:textSize="30sp"
         android:textStyle="bold"
@@ -23,7 +22,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:text="@string/weather_description"
         android:textColor="#FFF"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -48,7 +46,6 @@
         android:layout_height="100dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
-        android:contentDescription="@string/weather_fragment_weather_image_description"
         app:layout_constraintEnd_toStartOf="@id/weather_fragment_current_temp"
         app:layout_constraintHorizontal_chainStyle="packed"
         app:layout_constraintStart_toStartOf="parent"
@@ -58,7 +55,6 @@
         android:id="@+id/weather_fragment_current_temp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/temp_test_value"
         android:textColor="#FFF"
         android:textSize="50sp"
         app:layout_constraintBottom_toBottomOf="@id/weather_fragment_weather_image"
@@ -67,63 +63,22 @@
         app:layout_constraintTop_toTopOf="@id/weather_fragment_weather_image" />
 
     <ImageView
-        android:id="@+id/weather_fragment_temp_image"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="52dp"
-        android:background="@drawable/thermometer"
-        android:backgroundTint="#FFF"
-        android:contentDescription="@string/temperature_image"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/weather_fragment_weather_description" />
-
-    <TextView
-        android:id="@+id/weather_fragment_min_temp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
-        android:layout_marginEnd="16dp"
-        android:text="@string/temp_test_value"
-        android:textColor="#FFF"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toStartOf="@id/weather_fragment_max_temp"
-        app:layout_constraintHorizontal_chainStyle="packed"
-        app:layout_constraintStart_toStartOf="@id/weather_fragment_temp_image"
-        app:layout_constraintTop_toBottomOf="@id/weather_fragment_temp_image"
-        app:layout_goneMarginEnd="8dp" />
-
-    <TextView
-        android:id="@+id/weather_fragment_max_temp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="4dp"
-        android:layout_marginTop="4dp"
-        android:text="@string/temp_test_value"
-        android:textColor="#FFF"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="@id/weather_fragment_temp_image"
-        app:layout_constraintStart_toEndOf="@id/weather_fragment_min_temp"
-        app:layout_constraintTop_toBottomOf="@id/weather_fragment_temp_image" />
-
-    <ImageView
         android:id="@+id/weather_fragment_humidity_image"
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:background="@drawable/humidity"
         android:backgroundTint="#FFF"
         android:contentDescription="@string/humidity_image"
-        app:layout_constraintBottom_toBottomOf="@id/weather_fragment_temp_image"
-        app:layout_constraintEnd_toStartOf="@id/weather_fragment_temp_image"
+        app:layout_constraintBottom_toBottomOf="@id/weather_fragment_wind_direction"
+        app:layout_constraintEnd_toStartOf="@id/weather_fragment_wind_direction"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/weather_fragment_temp_image" />
+        app:layout_constraintTop_toTopOf="@id/weather_fragment_wind_direction" />
 
     <TextView
         android:id="@+id/weather_fragment_humidity"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
-        android:text="@string/temp_test_value"
         android:textColor="#FFF"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="@id/weather_fragment_humidity_image"
@@ -138,15 +93,14 @@
         android:backgroundTint="#FFF"
         android:contentDescription="@string/pressure_image"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/weather_fragment_temp_image"
-        app:layout_constraintTop_toTopOf="@id/weather_fragment_temp_image" />
+        app:layout_constraintStart_toEndOf="@id/weather_fragment_wind_direction"
+        app:layout_constraintTop_toTopOf="@id/weather_fragment_wind_direction" />
 
     <TextView
         android:id="@+id/weather_fragment_pressure"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
-        android:text="@string/temp_test_value"
         android:textColor="#FFF"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="@id/weather_fragment_pressure_image"
@@ -157,36 +111,71 @@
         android:id="@+id/weather_fragment_wind_direction"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="52dp"
-        android:layout_marginEnd="16dp"
+        android:layout_marginTop="28dp"
         android:background="@drawable/baseline_navigation_black_48dp"
         android:backgroundTint="#FFF"
         android:contentDescription="@string/wind_direction_arrow_text"
-        app:layout_constraintEnd_toStartOf="@id/weather_fragment_wind"
-        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/weather_fragment_temp_image" />
+        app:layout_constraintTop_toBottomOf="@id/weather_fragment_weather_description" />
 
     <TextView
         android:id="@+id/weather_fragment_wind"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/temp_test_value"
-        android:textSize="20sp"
+        android:layout_marginTop="4dp"
         android:textColor="#FFF"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="@id/weather_fragment_wind_direction"
+        app:layout_constraintStart_toStartOf="@id/weather_fragment_wind_direction"
+        app:layout_constraintTop_toBottomOf="@id/weather_fragment_wind_direction" />
+
+    <ImageView
+        android:id="@+id/weather_fragment_temp_image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="52dp"
+        android:background="@drawable/thermometer"
+        android:backgroundTint="#FFF"
+        android:contentDescription="@string/temperature_image"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/weather_fragment_wind_direction"
-        app:layout_constraintTop_toTopOf="@id/weather_fragment_wind_direction"
-        app:layout_constraintBottom_toBottomOf="@id/weather_fragment_wind_direction"/>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/weather_fragment_wind_direction" />
+
+    <TextView
+        android:id="@+id/weather_fragment_min_temp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="16dp"
+        android:textColor="#FFF"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toStartOf="@id/weather_fragment_max_temp"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toStartOf="@id/weather_fragment_temp_image"
+        app:layout_constraintTop_toBottomOf="@id/weather_fragment_temp_image"
+        app:layout_goneMarginEnd="8dp" />
+
+    <TextView
+        android:id="@+id/weather_fragment_max_temp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="4dp"
+        android:textColor="#FFF"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="@id/weather_fragment_temp_image"
+        app:layout_constraintStart_toEndOf="@id/weather_fragment_min_temp"
+        app:layout_constraintTop_toBottomOf="@id/weather_fragment_temp_image" />
 
     <Button
         android:id="@+id/weather_fragment_five_day_data_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/_5_day_data_button_text"
-        app:layout_constraintTop_toBottomOf="@id/weather_fragment_wind_direction"
-        app:layout_constraintStart_toStartOf="parent"
+        android:text="@string/_5_day_forecast_button"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"/>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/weather_fragment_temp_image" />
 
 </android.support.constraint.ConstraintLayout>

@@ -24,7 +24,7 @@ import org.tomislavgazica.weatherapp.ui.weatherCurrent.WeatherDetailsFragment;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class MainActivity extends AppCompatActivity implements OnForecastCall {
+public class WeatherActivity extends AppCompatActivity implements OnForecastCall {
 
     private SupportPlaceAutocompleteFragment placeAutocompleteFragment;
     private WeatherDetailsFragment weatherDetailsFragment;
