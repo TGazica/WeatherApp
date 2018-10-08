@@ -17,8 +17,6 @@ public class App extends Application {
     private static double latitude;
     private static double longitude;
     private static String currentCity = null;
-    private static boolean isForecastDataDownloaded = false;
-    private ForecastHolder forecastHolder;
 
 
     @Override
@@ -27,7 +25,7 @@ public class App extends Application {
 
         sInstance = this;
 
-        forecastHolder = ForecastHolder.getInstance();
+        ForecastHolder forecastHolder = ForecastHolder.getInstance();
 
         final Retrofit retrofit = RetrofitUtil.createRetrofit();
         final ApiService apiService = retrofit.create(ApiService.class);
@@ -66,13 +64,5 @@ public class App extends Application {
 
     public static void setLongitude(double longitude) {
         App.longitude = longitude;
-    }
-
-    public static boolean isIsForecastDataDownloaded() {
-        return isForecastDataDownloaded;
-    }
-
-    public static void setIsForecastDataDownloaded(boolean isForecastDataDownloaded) {
-        App.isForecastDataDownloaded = isForecastDataDownloaded;
     }
 }

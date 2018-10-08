@@ -2,7 +2,6 @@ package org.tomislavgazica.weatherapp.ui.forecast;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.view.PagerTabStrip;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -12,11 +11,9 @@ import android.widget.Toast;
 
 import org.tomislavgazica.weatherapp.App;
 import org.tomislavgazica.weatherapp.R;
-import org.tomislavgazica.weatherapp.model.Forecast;
 import org.tomislavgazica.weatherapp.presentation.ForecastPresenter;
 import org.tomislavgazica.weatherapp.ui.forecast.adapter.CustomViewPagerAdapter;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 

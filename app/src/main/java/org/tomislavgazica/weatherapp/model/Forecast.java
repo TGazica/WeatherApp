@@ -54,7 +54,7 @@ public class Forecast {
     }
 
     public Date getDate(){
-        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         try {
             return sdf.parse(dt_txt);
         } catch (ParseException e) {

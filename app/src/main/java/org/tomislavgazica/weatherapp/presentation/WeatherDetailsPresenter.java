@@ -156,7 +156,7 @@ public class WeatherDetailsPresenter implements WeatherDetailsContract.Presenter
 
     @Override
     public void getWindValues(double windValues, double direction) {
-        view.setWindValues(ConversionUtil.toKmhFromMph(windValues), direction);
+        view.setWindValues(ConversionUtil.toKmhFromMph(windValues), -direction);
     }
 
     @Override
