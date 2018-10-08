@@ -9,9 +9,12 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
+import com.google.android.gms.common.GooglePlayServicesRepairableException;
 import com.google.android.gms.common.api.Status;
 import com.google.android.gms.location.places.AutocompleteFilter;
 import com.google.android.gms.location.places.Place;
+import com.google.android.gms.location.places.ui.PlacePicker;
 import com.google.android.gms.location.places.ui.PlaceSelectionListener;
 import com.google.android.gms.location.places.ui.SupportPlaceAutocompleteFragment;
 
@@ -23,6 +26,7 @@ import org.tomislavgazica.weatherapp.ui.weatherCurrent.fragment.WeatherDetailsFr
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class WeatherActivity extends AppCompatActivity implements OnForecastClickListener {
 
@@ -92,22 +96,22 @@ public class WeatherActivity extends AppCompatActivity implements OnForecastClic
         startActivity(intent);
     }
 
-//    @OnClick(R.id.open_maps_icon)
-//    public void openMap() {
-//        PlacePicker.IntentBuilder builder = new PlacePicker.IntentBuilder();
-//        try {
-//            startActivityForResult(builder.build(this), PLACE_PICKER_REQUEST);
-//        } catch (GooglePlayServicesRepairableException | GooglePlayServicesNotAvailableException e) {
-//            e.printStackTrace();
-//        }
-//    }
-//
-//    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-//        if (requestCode == PLACE_PICKER_REQUEST) {
-//            if (resultCode == RESULT_OK) {
-//                Place place = PlacePicker.getPlace(this, data);
-//                weatherDetailsFragment.refreshData(place.getLatLng().latitude, place.getLatLng().longitude);
-//            }
-//        }
-//    }
+    @OnClick(R.id.open_maps_icon)
+    public void openMap() {
+        PlacePicker.IntentBuilder builder = new PlacePicker.IntentBuilder();
+        try {
+            startActivityForResult(builder.build(this), PLACE_PICKER_REQUEST);
+        } catch (GooglePlayServicesRepairableException | GooglePlayServicesNotAvailableException e) {
+            e.printStackTrace();
+        }
+    }
+
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == PLACE_PICKER_REQUEST) {
+            if (resultCode == RESULT_OK) {
+                Place place = PlacePicker.getPlace(this, data);
+                weatherDetailsFragment.refreshData(place.getLatLng().latitude, place.getLatLng().longitude);
+            }
+        }
+    }
 }

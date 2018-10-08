@@ -48,6 +48,11 @@ public class WeatherDetailsPresenter implements WeatherDetailsContract.Presenter
     }
 
     @Override
+    public void refreshWeather(double langitude, double longitude) {
+        apiInteractor.getWeatherFromGps(getWeatherCallback(), langitude, longitude);
+    }
+
+    @Override
     public void getWeatherFromNet(String city) {
         apiInteractor.getWeatherFromName(getWeatherCallback(), city);
     }

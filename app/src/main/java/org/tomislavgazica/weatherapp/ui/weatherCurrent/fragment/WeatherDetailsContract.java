@@ -37,6 +37,8 @@ public interface WeatherDetailsContract {
 
         void refreshWeather();
 
+        void refreshWeather(double langitude, double longitude);
+
         void getWeatherFromNet(String city);
 
         void getWeatherFromNet(double latitude, double longitude);

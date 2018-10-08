@@ -94,6 +94,10 @@ public class WeatherDetailsFragment extends Fragment implements WeatherDetailsCo
         presenter.refreshWeather();
     }
 
+    public void refreshData(double langitude, double longitude){
+        presenter.refreshWeather(langitude, longitude);
+    }
+
     @Override
     public void onNetworkFailure() {
         Toast.makeText(getContext(), getString(R.string.network_error_text), Toast.LENGTH_SHORT).show();
