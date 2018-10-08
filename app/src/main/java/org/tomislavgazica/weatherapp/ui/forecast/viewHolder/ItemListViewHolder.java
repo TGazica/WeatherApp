@@ -35,6 +35,8 @@ public class ItemListViewHolder extends RecyclerView.ViewHolder {
     @BindView(R.id.item_humidity)
     TextView itemHumidity;
 
+    private static final String HOUR_UNIT = " h";
+
     public ItemListViewHolder(@NonNull View itemView) {
         super(itemView);
         ButterKnife.bind(this, itemView);
@@ -47,7 +49,7 @@ public class ItemListViewHolder extends RecyclerView.ViewHolder {
         time.setTime(forecast.getDate());
         String timeOfDay = Integer.toString(time.get(Calendar.HOUR_OF_DAY));
         if (timeOfDay.length() == 1) {
-            timeOfDay = "0" + timeOfDay;
+            timeOfDay = "0" + timeOfDay + HOUR_UNIT;
         }
         String temp = ConversionUtil.toCelsiusFromKelvin(forecast.getMain().getTemp()) + Constants.TEMPERATURE_CELSIUS;
         String speed = ConversionUtil.toKmhFromMph(forecast.getWind().getSpeed()) + Constants.SPEED_UNIT;

@@ -17,4 +17,5 @@
     <string name="humidity_image">Humidity image</string>
     <string name="pressure_image">Pressure image</string>
     <string name="_5_day_forecast_button">5 day forecast</string>
+    <string name="hour_unit">h</string>
 </resources>
