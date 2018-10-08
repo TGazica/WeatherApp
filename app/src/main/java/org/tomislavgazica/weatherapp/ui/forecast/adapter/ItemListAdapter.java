@@ -17,7 +17,7 @@ public class ItemListAdapter extends RecyclerView.Adapter<ItemListViewHolder> {
 
     private List<Forecast> forecasts = new ArrayList<>();
 
-    public ItemListAdapter(List<Forecast> forecasts) {
+    public void setForecasts(List<Forecast> forecasts) {
         this.forecasts.clear();
         this.forecasts.addAll(forecasts);
         notifyDataSetChanged();
@@ -33,7 +33,7 @@ public class ItemListAdapter extends RecyclerView.Adapter<ItemListViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull ItemListViewHolder itemListViewHolder, int i) {
         Forecast forecast = forecasts.get(i);
-        itemListViewHolder.setForcast(forecast);
+        itemListViewHolder.setForecast(forecast);
     }
 
     @Override

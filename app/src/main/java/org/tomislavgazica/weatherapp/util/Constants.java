@@ -10,6 +10,7 @@ public class Constants {
     public static final String API_KEY_PLACES = "AIzaSyDY3VXeBitwwxr5E-qfxmNV6VUfAarNsnU";
 
     public static final String DEFAULT_CITY = "Zagreb";
+    public static final String FORECAST_DAY_KEY = "City key";
 
     public static final String TEMPERATURE_CELSIUS = "°C";
     public static final String PRESSURE_UNIT = "bar";

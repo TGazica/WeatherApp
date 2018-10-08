@@ -1,37 +1,20 @@
 <resources>
     <string name="app_name">WeatherApp</string>
-    <string name="city_name_test">Osijek</string>
-    <string name="temp_test_value">30</string>
     <string name="refresh_weather_data_description">Refresh weather data</string>
     <string name="weather_fragment_weather_image_description">Current weather conditions image</string>
-    <string name="min_temp_text">Min:</string>
-    <string name="max_temp_text">Max:</string>
-    <string name="current_temp_text">Current temp:</string>
-    <string name="weather_description">Weather description</string>
-    <string name="humidity_text">Humidity:</string>
-    <string name="pressure_text">Pressure:</string>
     <string name="wind_direction_arrow_text">Wind direction arrow</string>
-    <string name="wind_text">Wind:</string>
-    <string name="_5_day_data_button_text">5 day data</string>
     <string name="network_error_text">Network error</string>
     <string name="deg_celsisus_text">°C</string>
     <string name="pressure_unit">bar</string>
     <string name="percent">%</string>
     <string name="speed_unit">km/h</string>
     <string name="location_permission_denied">Location denied</string>
-    <string name="autocomplete_hint">Please enter preferred city</string>
     <string name="open_maps_icon_description">Open google maps</string>
     <string name="item_wind_direction_pointer">Item wind direction pointer</string>
-    <string name="time_sample">00 h</string>
-    <string name="presure_test_item">1000</string>
-    <string name="item_humidity_text">30.5%</string>
-    <string name="wind_test_text">30 km/h</string>
-    <string name="date_text">20.12.</string>
     <string name="gps_error">Error fetching data</string>
     <string name="weather_forecast_title">Weather forecast</string>
     <string name="temperature_image">Temperature image</string>
     <string name="humidity_image">Humidity image</string>
     <string name="pressure_image">Pressure image</string>
-    <string name="temp_test_text">30.2 °C</string>
     <string name="_5_day_forecast_button">5 day forecast</string>
 </resources>

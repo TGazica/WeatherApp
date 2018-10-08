@@ -1,20 +1,24 @@
 package org.tomislavgazica.weatherapp.ui.forecast;
 
-import org.tomislavgazica.weatherapp.model.ForecastResponse;
+import java.util.Date;
+import java.util.List;
 
 public interface ForecastContract {
 
-    interface View{
+    interface View {
 
-        void setData(ForecastResponse forecastResponse);
+        void setForecastData(List<Date> dates);
+
+        void onNetworkFail();
 
     }
 
-    interface Presenter{
-
-        void getDataFromNet();
+    interface Presenter {
 
         void setView(ForecastContract.View view);
 
+        void getForecastData();
+
     }
+
 }

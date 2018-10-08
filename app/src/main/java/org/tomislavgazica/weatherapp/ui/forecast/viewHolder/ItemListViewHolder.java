@@ -41,12 +41,12 @@ public class ItemListViewHolder extends RecyclerView.ViewHolder {
     }
 
 
-    public void setForcast(Forecast forecast) {
+    public void setForecast(Forecast forecast) {
         String description = forecast.getWeatherObject().getDescription().toUpperCase();
         Calendar time = Calendar.getInstance();
         time.setTime(forecast.getDate());
         String timeOfDay = Integer.toString(time.get(Calendar.HOUR_OF_DAY));
-        if (timeOfDay.length() == 2){
+        if (timeOfDay.length() == 1) {
             timeOfDay = "0" + timeOfDay;
         }
         String temp = ConversionUtil.toCelsiusFromKelvin(forecast.getMain().getTemp()) + Constants.TEMPERATURE_CELSIUS;

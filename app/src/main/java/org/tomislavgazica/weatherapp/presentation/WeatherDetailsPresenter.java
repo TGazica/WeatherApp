@@ -6,7 +6,7 @@ import android.content.Context;
 import org.tomislavgazica.weatherapp.App;
 import org.tomislavgazica.weatherapp.interactor.ApiInteractor;
 import org.tomislavgazica.weatherapp.model.WeatherResponse;
-import org.tomislavgazica.weatherapp.ui.weatherCurrent.WeatherDetailsContract;
+import org.tomislavgazica.weatherapp.ui.weatherCurrent.fragment.WeatherDetailsContract;
 import org.tomislavgazica.weatherapp.util.Constants;
 import org.tomislavgazica.weatherapp.util.ConversionUtil;
 import org.tomislavgazica.weatherapp.util.GpsListener;

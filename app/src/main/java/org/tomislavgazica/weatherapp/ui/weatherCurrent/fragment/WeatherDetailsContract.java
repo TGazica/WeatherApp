@@ -1,4 +1,4 @@
-package org.tomislavgazica.weatherapp.ui.weatherCurrent;
+package org.tomislavgazica.weatherapp.ui.weatherCurrent.fragment;
 
 import android.app.Activity;
 import android.content.Context;

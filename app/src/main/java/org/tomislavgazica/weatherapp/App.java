@@ -2,6 +2,7 @@ package org.tomislavgazica.weatherapp;
 
 import android.app.Application;
 
+import org.tomislavgazica.weatherapp.holder.ForecastHolder;
 import org.tomislavgazica.weatherapp.interactor.ApiInteractor;
 import org.tomislavgazica.weatherapp.interactor.ApiInteractorImpl;
 import org.tomislavgazica.weatherapp.networking.ApiService;
@@ -15,13 +16,18 @@ public class App extends Application {
     private static ApiInteractor apiInteractor;
     private static double latitude;
     private static double longitude;
-    public static String currentCity = null;
+    private static String currentCity = null;
+    private static boolean isForecastDataDownloaded = false;
+    private ForecastHolder forecastHolder;
+
 
     @Override
     public void onCreate() {
         super.onCreate();
 
         sInstance = this;
+
+        forecastHolder = ForecastHolder.getInstance();
 
         final Retrofit retrofit = RetrofitUtil.createRetrofit();
         final ApiService apiService = retrofit.create(ApiService.class);
@@ -60,5 +66,13 @@ public class App extends Application {
 
     public static void setLongitude(double longitude) {
         App.longitude = longitude;
+    }
+
+    public static boolean isIsForecastDataDownloaded() {
+        return isForecastDataDownloaded;
+    }
+
+    public static void setIsForecastDataDownloaded(boolean isForecastDataDownloaded) {
+        App.isForecastDataDownloaded = isForecastDataDownloaded;
     }
 }

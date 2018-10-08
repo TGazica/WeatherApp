@@ -18,7 +18,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
-            android:text="@string/weather_description"
             android:textColor="#FFF"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -29,7 +28,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="4dp"
-            android:text="@string/time_sample"
             android:textColor="#FFF"
             android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -41,7 +39,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:text="@string/temp_test_text"
             android:textColor="#FFF"
             android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -65,7 +62,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="4dp"
-            android:text="@string/wind_test_text"
             android:textColor="#FFF"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -87,12 +83,11 @@
             android:id="@+id/item_pressure"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintStart_toEndOf="@id/item_pressure_image"
-            app:layout_constraintTop_toTopOf="@id/item_pressure_image"
-            app:layout_constraintBottom_toBottomOf="@id/item_pressure_image"
             android:layout_marginStart="4dp"
-            android:text="@string/presure_test_item"
-            android:textColor="#FFF" />
+            android:textColor="#FFF"
+            app:layout_constraintBottom_toBottomOf="@id/item_pressure_image"
+            app:layout_constraintStart_toEndOf="@id/item_pressure_image"
+            app:layout_constraintTop_toTopOf="@id/item_pressure_image" />
 
         <ImageView
             android:id="@+id/item_humidity_image"
@@ -110,12 +105,11 @@
             android:id="@+id/item_humidity"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintStart_toEndOf="@id/item_humidity_image"
-            app:layout_constraintTop_toTopOf="@id/item_humidity_image"
-            app:layout_constraintBottom_toBottomOf="@id/item_humidity_image"
             android:layout_marginStart="4dp"
-            android:text="@string/item_humidity_text"
-            android:textColor="#FFF" />
+            android:textColor="#FFF"
+            app:layout_constraintBottom_toBottomOf="@id/item_humidity_image"
+            app:layout_constraintStart_toEndOf="@id/item_humidity_image"
+            app:layout_constraintTop_toTopOf="@id/item_humidity_image" />
 
     </android.support.constraint.ConstraintLayout>
 

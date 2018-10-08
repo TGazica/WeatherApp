@@ -1,4 +1,4 @@
-package org.tomislavgazica.weatherapp.ui;
+package org.tomislavgazica.weatherapp.ui.weatherCurrent;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -18,13 +18,13 @@ import com.google.android.gms.location.places.ui.SupportPlaceAutocompleteFragmen
 import org.tomislavgazica.weatherapp.App;
 import org.tomislavgazica.weatherapp.R;
 import org.tomislavgazica.weatherapp.ui.forecast.ForecastActivity;
-import org.tomislavgazica.weatherapp.ui.forecast.OnForecastCall;
-import org.tomislavgazica.weatherapp.ui.weatherCurrent.WeatherDetailsFragment;
+import org.tomislavgazica.weatherapp.ui.forecast.OnForecastClickListener;
+import org.tomislavgazica.weatherapp.ui.weatherCurrent.fragment.WeatherDetailsFragment;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class WeatherActivity extends AppCompatActivity implements OnForecastCall {
+public class WeatherActivity extends AppCompatActivity implements OnForecastClickListener {
 
     private SupportPlaceAutocompleteFragment placeAutocompleteFragment;
     private WeatherDetailsFragment weatherDetailsFragment;
