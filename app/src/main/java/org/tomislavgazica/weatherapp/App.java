@@ -2,7 +2,6 @@ package org.tomislavgazica.weatherapp;
 
 import android.app.Application;
 
-import org.tomislavgazica.weatherapp.holder.ForecastHolder;
 import org.tomislavgazica.weatherapp.interactor.ApiInteractor;
 import org.tomislavgazica.weatherapp.interactor.ApiInteractorImpl;
 import org.tomislavgazica.weatherapp.networking.ApiService;
@@ -16,7 +15,6 @@ public class App extends Application {
     private static App sInstance;
     private static ApiInteractor apiInteractor;
     private LocationDataUtil locationDataUtil;
-    private ForecastHolder forecastHolder;
 
     @Override
     public void onCreate() {
@@ -24,7 +22,6 @@ public class App extends Application {
 
         sInstance = this;
 
-        forecastHolder = ForecastHolder.getInstance();
         locationDataUtil = LocationDataUtil.getInstance();
 
         final Retrofit retrofit = RetrofitUtil.createRetrofit();

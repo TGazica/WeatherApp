@@ -1,11 +1,10 @@
 package org.tomislavgazica.weatherapp.presentation;
 
-import org.tomislavgazica.weatherapp.holder.ForecastHolder;
 import org.tomislavgazica.weatherapp.interactor.ApiInteractor;
 import org.tomislavgazica.weatherapp.model.Forecast;
 import org.tomislavgazica.weatherapp.model.ForecastResponse;
 import org.tomislavgazica.weatherapp.ui.forecast.ForecastContract;
-import org.tomislavgazica.weatherapp.util.ForcastSorterUtil;
+import org.tomislavgazica.weatherapp.util.ForecastSorterUtil;
 import org.tomislavgazica.weatherapp.util.LocationDataUtil;
 
 import java.util.List;
@@ -18,12 +17,10 @@ public class ForecastPresenter implements ForecastContract.Presenter {
 
     private ApiInteractor apiInteractor;
     private ForecastContract.View view;
-    private ForecastHolder forecastHolder;
     private LocationDataUtil locationDataUtil;
 
     public ForecastPresenter(ApiInteractor apiInteractor) {
         this.apiInteractor = apiInteractor;
-        forecastHolder = ForecastHolder.getInstance();
         locationDataUtil = LocationDataUtil.getInstance();
     }
 
@@ -42,7 +39,6 @@ public class ForecastPresenter implements ForecastContract.Presenter {
             @Override
             public void onResponse(Call<ForecastResponse> call, Response<ForecastResponse> response) {
                 if (response.body() != null) {
-                    forecastHolder.setForecasts(response.body().getList());
                     sortData(response.body().getList());
                 }
             }
@@ -55,6 +51,6 @@ public class ForecastPresenter implements ForecastContract.Presenter {
     }
 
     private void sortData(List<Forecast> forecasts) {
-        view.setForecastData(ForcastSorterUtil.sortForecastData(forecasts));
+        view.setForecastData(ForecastSorterUtil.sortForecastData(forecasts));
     }
 }

@@ -1,7 +1,5 @@
 package org.tomislavgazica.weatherapp.util;
 
-import android.widget.ScrollView;
-
 import java.text.DecimalFormat;
 
 public class ConversionUtil {
