@@ -1,6 +1,8 @@
 package org.tomislavgazica.weatherapp.model;
 
-public class Main {
+import java.io.Serializable;
+
+public class Main implements Serializable {
     private double temp;
     private double temp_min;
     private double temp_max;

@@ -1,6 +1,8 @@
 package org.tomislavgazica.weatherapp.model;
 
-public class Wind {
+import java.io.Serializable;
+
+public class Wind implements Serializable {
     private final double speed;
     private final double deg;
 

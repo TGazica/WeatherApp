@@ -11,32 +11,27 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import org.tomislavgazica.weatherapp.R;
-import org.tomislavgazica.weatherapp.model.Forecast;
-import org.tomislavgazica.weatherapp.presentation.ForecastFragmentPresenter;
+import org.tomislavgazica.weatherapp.model.OneDayForecast;
 import org.tomislavgazica.weatherapp.ui.forecast.adapter.ItemListAdapter;
 import org.tomislavgazica.weatherapp.util.Constants;
-
-import java.util.Date;
-import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 
-public class ForecastFragment extends Fragment implements ForecastFragmentContract.View {
+public class ForecastFragment extends Fragment {
 
     @BindView(R.id.forecast_item_list)
     RecyclerView forecastItemList;
     Unbinder unbinder;
 
-    private ForecastFragmentContract.Presenter presenter;
     private ItemListAdapter itemListAdapter;
 
-    private Date dateToDisplay;
+    private OneDayForecast oneDayForecast;
 
-    public static ForecastFragment newInstance(Date date) {
+    public static ForecastFragment newInstance(OneDayForecast oneDayForecast) {
         Bundle data = new Bundle();
-        data.putSerializable(Constants.FORECAST_DAY_KEY, date);
+        data.putSerializable(Constants.FORECAST_DAY_KEY, oneDayForecast);
         ForecastFragment f = new ForecastFragment();
         f.setArguments(data);
         return f;
@@ -55,7 +50,7 @@ public class ForecastFragment extends Fragment implements ForecastFragmentContra
         super.onViewCreated(view, savedInstanceState);
 
         if (getArguments() != null) {
-            dateToDisplay = (Date) getArguments().getSerializable(Constants.FORECAST_DAY_KEY);
+            oneDayForecast = (OneDayForecast) getArguments().getSerializable(Constants.FORECAST_DAY_KEY);
         }
 
         itemListAdapter = new ItemListAdapter();
@@ -63,25 +58,12 @@ public class ForecastFragment extends Fragment implements ForecastFragmentContra
         forecastItemList.setLayoutManager(new LinearLayoutManager(getActivity()));
         forecastItemList.setAdapter(itemListAdapter);
 
-        presenter = new ForecastFragmentPresenter();
-        presenter.setView(this);
-        presenter.getData(dateToDisplay);
+        itemListAdapter.setForecast(oneDayForecast);
     }
 
     @Override
     public void onDestroyView() {
         super.onDestroyView();
         unbinder.unbind();
-    }
-
-    @Override
-    public void setData(List<Forecast> forecasts) {
-        itemListAdapter.setForecasts(forecasts);
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        presenter.getData(dateToDisplay);
     }
 }

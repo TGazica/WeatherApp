@@ -1,11 +1,11 @@
-package org.tomislavgazica.weatherapp.ui.weatherCurrent.fragment;
+package org.tomislavgazica.weatherapp.ui.weatherCurrent;
 
 import android.app.Activity;
 import android.content.Context;
 
 import org.tomislavgazica.weatherapp.model.WeatherResponse;
 
-public interface WeatherDetailsContract {
+public interface WeatherContract {
 
     interface View {
 
@@ -33,11 +33,7 @@ public interface WeatherDetailsContract {
 
     interface Presenter {
 
-        void setGpsUtil(Context context, Activity activity);
-
         void refreshWeather();
-
-        void refreshWeather(double langitude, double longitude);
 
         void getWeatherFromNet(String city);
 

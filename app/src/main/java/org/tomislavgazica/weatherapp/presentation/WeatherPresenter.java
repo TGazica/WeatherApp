@@ -1,39 +1,30 @@
 package org.tomislavgazica.weatherapp.presentation;
 
-import android.app.Activity;
-import android.content.Context;
-
-import org.tomislavgazica.weatherapp.App;
 import org.tomislavgazica.weatherapp.interactor.ApiInteractor;
 import org.tomislavgazica.weatherapp.model.WeatherResponse;
-import org.tomislavgazica.weatherapp.ui.weatherCurrent.fragment.WeatherDetailsContract;
+import org.tomislavgazica.weatherapp.ui.weatherCurrent.WeatherContract;
 import org.tomislavgazica.weatherapp.util.Constants;
 import org.tomislavgazica.weatherapp.util.ConversionUtil;
-import org.tomislavgazica.weatherapp.util.GpsListener;
-import org.tomislavgazica.weatherapp.util.GpsUtil;
-
-import java.text.DecimalFormat;
+import org.tomislavgazica.weatherapp.util.LocationDataUtil;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class WeatherDetailsPresenter implements WeatherDetailsContract.Presenter, GpsListener {
+public class WeatherPresenter implements WeatherContract.Presenter {
 
     private final ApiInteractor apiInteractor;
 
-    private WeatherDetailsContract.View view;
+    private WeatherContract.View view;
+    private LocationDataUtil locationDataUtil;
 
-    public WeatherDetailsPresenter(ApiInteractor apiInteractor) {
+    public WeatherPresenter(ApiInteractor apiInteractor) {
         this.apiInteractor = apiInteractor;
+        locationDataUtil = LocationDataUtil.getInstance();
     }
 
-    public void setGpsUtil(Context context, Activity activity) {
-        GpsUtil gpsUtil = new GpsUtil(context, activity, this);
-    }
-
-    @Override
-    public void setView(WeatherDetailsContract.View view) {
+   @Override
+    public void setView(WeatherContract.View view) {
         this.view = view;
     }
 
@@ -44,12 +35,7 @@ public class WeatherDetailsPresenter implements WeatherDetailsContract.Presenter
 
     @Override
     public void refreshWeather() {
-        getWeatherFromNet(App.getCurrentCity());
-    }
-
-    @Override
-    public void refreshWeather(double langitude, double longitude) {
-        apiInteractor.getWeatherFromGps(getWeatherCallback(), langitude, longitude);
+        getWeatherFromNet(locationDataUtil.getCityName());
     }
 
     @Override
@@ -88,7 +74,7 @@ public class WeatherDetailsPresenter implements WeatherDetailsContract.Presenter
         getMaxTemperatureValues(weatherResponse.getMain().getTemp_max());
         getHumidityValues(weatherResponse.getMain().getHumidity());
         getCityName(weatherResponse.getName());
-        App.setCurrentCity(weatherResponse.getName());
+        locationDataUtil.setCityName(weatherResponse.getName());
         getWindValues(weatherResponse.getWind().getSpeed(), weatherResponse.getWind().getDeg());
     }
 
@@ -150,8 +136,7 @@ public class WeatherDetailsPresenter implements WeatherDetailsContract.Presenter
 
     @Override
     public void getPressureValues(double pressureValues) {
-        DecimalFormat REAL_FORMATTER = new DecimalFormat("0.#");
-        view.setPressureValues(REAL_FORMATTER.format(pressureValues));
+        view.setPressureValues(ConversionUtil.formatPressure(pressureValues));
     }
 
     @Override
@@ -161,7 +146,7 @@ public class WeatherDetailsPresenter implements WeatherDetailsContract.Presenter
 
     @Override
     public void getWindValues(double windValues, double direction) {
-        view.setWindValues(ConversionUtil.toKmhFromMph(windValues), -direction);
+        view.setWindValues(ConversionUtil.toKmhFromMph(windValues), direction);
     }
 
     @Override
@@ -174,17 +159,4 @@ public class WeatherDetailsPresenter implements WeatherDetailsContract.Presenter
         view.setDescriptionValues(descriptionValues);
     }
 
-    @Override
-    public void onLocationSuccess() {
-        if (App.getCurrentCity() != null) {
-            getWeatherFromNet(App.getCurrentCity());
-        } else {
-            getWeatherFromNet(App.getLatitude(), App.getLongitude());
-        }
-    }
-
-    @Override
-    public void onLocationFail() {
-        getWeatherFromNet(Constants.DEFAULT_CITY);
-    }
 }

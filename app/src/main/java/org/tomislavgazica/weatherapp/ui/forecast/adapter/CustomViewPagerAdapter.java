@@ -5,6 +5,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
+import org.tomislavgazica.weatherapp.model.OneDayForecast;
 import org.tomislavgazica.weatherapp.ui.forecast.fragment.ForecastFragment;
 
 import java.util.ArrayList;
@@ -14,37 +15,31 @@ import java.util.List;
 
 public class CustomViewPagerAdapter extends FragmentPagerAdapter {
 
-    private final List<Date> dates = new ArrayList<>();
+    private final List<OneDayForecast> oneDayForecasts = new ArrayList<>();
 
     public CustomViewPagerAdapter(FragmentManager fm) {
         super(fm);
     }
 
-    public void setForecasts(List<Date> dates) {
-        this.dates.clear();
-        this.dates.addAll(dates);
+    public void setForecasts(List<OneDayForecast> oneDayForecasts) {
+        this.oneDayForecasts.clear();
+        this.oneDayForecasts.addAll(oneDayForecasts);
         notifyDataSetChanged();
     }
 
     @Override
     public Fragment getItem(int i) {
-        return ForecastFragment.newInstance(dates.get(i));
+        return ForecastFragment.newInstance(oneDayForecasts.get(i));
     }
 
     @Override
     public int getCount() {
-        return dates.size();
+        return oneDayForecasts.size();
     }
 
     @Nullable
     @Override
     public CharSequence getPageTitle(int position) {
-        Date date = dates.get(position);
-        Calendar calendar = Calendar.getInstance();
-        calendar.setTime(date);
-        int day = calendar.get(Calendar.DAY_OF_MONTH);
-        int month = calendar.get(Calendar.MONTH) + 1;
-
-        return Integer.toString(day) + "." + Integer.toString(month) + ".";
+        return oneDayForecasts.get(position).getDate();
     }
 }

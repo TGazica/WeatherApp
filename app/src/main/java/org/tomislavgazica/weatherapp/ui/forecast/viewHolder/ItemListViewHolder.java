@@ -52,16 +52,15 @@ public class ItemListViewHolder extends RecyclerView.ViewHolder {
             timeOfDay = "0" + timeOfDay;
         }
         timeOfDay = timeOfDay + HOUR_UNIT;
-        String temp = ConversionUtil.toCelsiusFromKelvin(forecast.getMain().getTemp()) + Constants.TEMPERATURE_CELSIUS;
-        String speed = ConversionUtil.toKmhFromMph(forecast.getWind().getSpeed()) + Constants.SPEED_UNIT;
-        DecimalFormat REAL_FORMATTER = new DecimalFormat("0.#");
-        String pressure = REAL_FORMATTER.format(forecast.getMain().getPressure()) + Constants.PRESSURE_UNIT;
+        String temp = ConversionUtil.toCelsiusFromKelvin(forecast.getMain().getTemp());
+        String speed = ConversionUtil.toKmhFromMph(forecast.getWind().getSpeed());
+        String pressure = ConversionUtil.formatPressure(forecast.getMain().getPressure());
         String humidity = Integer.toString(forecast.getMain().getHumidity()) + Constants.PERCENT;
 
         itemWeatherDescription.setText(description);
         itemTemp.setText(temp);
         itemTime.setText(timeOfDay);
-        itemWindDirection.setRotation((float) -forecast.getWind().getDeg());
+        itemWindDirection.setRotation((float) forecast.getWind().getDeg());
         itemPressure.setText(pressure);
         itemHumidity.setText(humidity);
         itemWind.setText(speed);

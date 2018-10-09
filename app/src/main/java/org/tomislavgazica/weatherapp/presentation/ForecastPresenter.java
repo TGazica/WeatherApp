@@ -1,14 +1,13 @@
 package org.tomislavgazica.weatherapp.presentation;
 
-import org.tomislavgazica.weatherapp.App;
 import org.tomislavgazica.weatherapp.holder.ForecastHolder;
 import org.tomislavgazica.weatherapp.interactor.ApiInteractor;
 import org.tomislavgazica.weatherapp.model.Forecast;
 import org.tomislavgazica.weatherapp.model.ForecastResponse;
 import org.tomislavgazica.weatherapp.ui.forecast.ForecastContract;
+import org.tomislavgazica.weatherapp.util.ForcastSorterUtil;
+import org.tomislavgazica.weatherapp.util.LocationDataUtil;
 
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import retrofit2.Call;
@@ -20,10 +19,12 @@ public class ForecastPresenter implements ForecastContract.Presenter {
     private ApiInteractor apiInteractor;
     private ForecastContract.View view;
     private ForecastHolder forecastHolder;
+    private LocationDataUtil locationDataUtil;
 
     public ForecastPresenter(ApiInteractor apiInteractor) {
         this.apiInteractor = apiInteractor;
         forecastHolder = ForecastHolder.getInstance();
+        locationDataUtil = LocationDataUtil.getInstance();
     }
 
     @Override
@@ -33,7 +34,7 @@ public class ForecastPresenter implements ForecastContract.Presenter {
 
     @Override
     public void getForecastData() {
-        apiInteractor.getForecast(forecastCallback(), App.getCurrentCity());
+        apiInteractor.getForecast(forecastCallback(), locationDataUtil.getCityName());
     }
 
     private Callback<ForecastResponse> forecastCallback() {
@@ -42,23 +43,18 @@ public class ForecastPresenter implements ForecastContract.Presenter {
             public void onResponse(Call<ForecastResponse> call, Response<ForecastResponse> response) {
                 if (response.body() != null) {
                     forecastHolder.setForecasts(response.body().getList());
-                    getDates(response.body().getList());
+                    sortData(response.body().getList());
                 }
             }
 
             @Override
             public void onFailure(Call<ForecastResponse> call, Throwable t) {
-
+                    view.onNetworkFail();
             }
         };
     }
 
-    private void getDates(List<Forecast> forecasts) {
-        List<Date> dates = new ArrayList<>();
-
-        for (int i = 0; i < forecasts.size(); i += 8) {
-            dates.add(forecasts.get(i).getDate());
-        }
-        view.setForecastData(dates);
+    private void sortData(List<Forecast> forecasts) {
+        view.setForecastData(ForcastSorterUtil.sortForecastData(forecasts));
     }
 }

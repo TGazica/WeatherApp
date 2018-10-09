@@ -18,4 +18,6 @@
     <string name="pressure_image">Pressure image</string>
     <string name="_5_day_forecast_button">5 day forecast</string>
     <string name="hour_unit">h</string>
+    <string name="places_autocomplete_search_image_text">Places autocomplete search image</string>
+    <string name="places_autocomplete_editText_hint">Search places</string>
 </resources>

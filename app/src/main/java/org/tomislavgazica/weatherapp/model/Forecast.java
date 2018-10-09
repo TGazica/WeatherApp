@@ -1,10 +1,11 @@
 package org.tomislavgazica.weatherapp.model;
 
+import java.io.Serializable;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class Forecast {
+public class Forecast implements Serializable {
 
     private Main main;
     private Weather[] weather = new Weather[1];

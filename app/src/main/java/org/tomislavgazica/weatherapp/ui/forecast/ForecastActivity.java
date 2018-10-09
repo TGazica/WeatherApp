@@ -11,6 +11,7 @@ import android.widget.Toast;
 
 import org.tomislavgazica.weatherapp.App;
 import org.tomislavgazica.weatherapp.R;
+import org.tomislavgazica.weatherapp.model.OneDayForecast;
 import org.tomislavgazica.weatherapp.presentation.ForecastPresenter;
 import org.tomislavgazica.weatherapp.ui.forecast.adapter.CustomViewPagerAdapter;
 
@@ -75,8 +76,8 @@ public class ForecastActivity extends AppCompatActivity implements ForecastContr
     }
 
     @Override
-    public void setForecastData(List<Date> dates) {
-        adapter.setForecasts(dates);
+    public void setForecastData(List<OneDayForecast> oneDayForecasts) {
+        adapter.setForecasts(oneDayForecasts);
     }
 
     @Override

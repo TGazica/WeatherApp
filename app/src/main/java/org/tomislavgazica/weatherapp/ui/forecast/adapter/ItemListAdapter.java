@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 
 import org.tomislavgazica.weatherapp.R;
 import org.tomislavgazica.weatherapp.model.Forecast;
+import org.tomislavgazica.weatherapp.model.OneDayForecast;
 import org.tomislavgazica.weatherapp.ui.forecast.viewHolder.ItemListViewHolder;
 
 import java.util.ArrayList;
@@ -15,11 +16,10 @@ import java.util.List;
 
 public class ItemListAdapter extends RecyclerView.Adapter<ItemListViewHolder> {
 
-    private List<Forecast> forecasts = new ArrayList<>();
+    private OneDayForecast oneDayForecast;
 
-    public void setForecasts(List<Forecast> forecasts) {
-        this.forecasts.clear();
-        this.forecasts.addAll(forecasts);
+    public void setForecast(OneDayForecast oneDayForecast) {
+        this.oneDayForecast = oneDayForecast;
         notifyDataSetChanged();
     }
 
@@ -32,12 +32,12 @@ public class ItemListAdapter extends RecyclerView.Adapter<ItemListViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull ItemListViewHolder itemListViewHolder, int i) {
-        Forecast forecast = forecasts.get(i);
+        Forecast forecast = oneDayForecast.getForecasts().get(i);
         itemListViewHolder.setForecast(forecast);
     }
 
     @Override
     public int getItemCount() {
-        return forecasts.size();
+        return oneDayForecast.getForecasts().size();
     }
 }
