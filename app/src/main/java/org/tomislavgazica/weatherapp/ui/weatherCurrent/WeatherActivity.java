@@ -71,7 +71,7 @@ public class WeatherActivity extends AppCompatActivity implements WeatherContrac
     private WeatherContract.Presenter presenter;
     private LocationListener locationListener;
 
-    private static final int LOCATION_UPDATE_TIME = 60 * 60 * 1000;
+    private static final int LOCATION_UPDATE_TIME = 0;
     private static final int REQUEST_LOCATION_PERMISSION = 100;
 
     private int PLACE_PICKER_REQUEST = 1;
