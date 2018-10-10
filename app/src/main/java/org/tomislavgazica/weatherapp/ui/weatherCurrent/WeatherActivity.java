@@ -77,6 +77,7 @@ public class WeatherActivity extends AppCompatActivity implements WeatherContrac
     private int PLACE_PICKER_REQUEST = 1;
     private int PLACE_AUTOCOMPLETE_REQUEST = 2;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -90,11 +91,15 @@ public class WeatherActivity extends AppCompatActivity implements WeatherContrac
         getLastKnownLocation();
 
     }
-
+    
     private void getLastKnownLocation() {
         if (ActivityCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
             Location lastKnownLocation = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
-            presenter.getWeatherFromNet(lastKnownLocation.getLatitude(), lastKnownLocation.getLongitude());
+            if (lastKnownLocation != null) {
+                presenter.getWeatherFromNet(lastKnownLocation.getLatitude(), lastKnownLocation.getLongitude());
+            }else {
+                presenter.getWeatherFromNet(Constants.DEFAULT_CITY);
+            }
         } else {
             presenter.getWeatherFromNet(Constants.DEFAULT_CITY);
         }
@@ -103,32 +108,38 @@ public class WeatherActivity extends AppCompatActivity implements WeatherContrac
     public void initLocationManager() {
         locationManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
 
-        locationListener = new LocationListener() {
-            @Override
-            public void onLocationChanged(Location location) {
-                presenter.getWeatherFromNet(location.getLatitude(), location.getLongitude());
+        if (locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
+
+            locationListener = new LocationListener() {
+                @Override
+                public void onLocationChanged(Location location) {
+                    presenter.getWeatherFromNet(location.getLatitude(), location.getLongitude());
+                }
+
+                @Override
+                public void onStatusChanged(String provider, int status, Bundle extras) {
+
+                }
+
+                @Override
+                public void onProviderEnabled(String provider) {
+
+                }
+
+                @Override
+                public void onProviderDisabled(String provider) {
+
+                }
+            };
+
+            if (ActivityCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                ActivityCompat.requestPermissions(WeatherActivity.this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, REQUEST_LOCATION_PERMISSION);
+            } else {
+                locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, LOCATION_UPDATE_TIME, 0, locationListener);
             }
 
-            @Override
-            public void onStatusChanged(String provider, int status, Bundle extras) {
-
-            }
-
-            @Override
-            public void onProviderEnabled(String provider) {
-
-            }
-
-            @Override
-            public void onProviderDisabled(String provider) {
-
-            }
-        };
-
-        if (ActivityCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(WeatherActivity.this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, REQUEST_LOCATION_PERMISSION);
-        } else {
-            locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, LOCATION_UPDATE_TIME, 0, locationListener);
+        }else {
+            presenter.getWeatherFromNet(Constants.DEFAULT_CITY);
         }
     }
 
