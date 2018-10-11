@@ -12,7 +12,7 @@ public class Constants {
     public static final String FORECAST_DAY_KEY = "City key";
 
     public static final String TEMPERATURE_CELSIUS = "°C";
-    public static final String PRESSURE_UNIT = "bar";
+    public static final String PRESSURE_UNIT = " bar";
     public static final String SPEED_UNIT = "km/h";
     public static final String PERCENT = "%";
 

@@ -18,6 +18,8 @@ public class WeatherPresenter implements WeatherContract.Presenter {
     private WeatherContract.View view;
     private LocationDataUtil locationDataUtil;
 
+    private boolean isRefreshCalled = false;
+
     public WeatherPresenter(ApiInteractor apiInteractor) {
         this.apiInteractor = apiInteractor;
         locationDataUtil = LocationDataUtil.getInstance();
@@ -29,13 +31,13 @@ public class WeatherPresenter implements WeatherContract.Presenter {
     }
 
     @Override
-    public void getCityName(String cityName) {
-        view.setCityName(cityName);
-    }
-
-    @Override
     public void refreshWeather() {
-        getWeatherFromNet(locationDataUtil.getCityName());
+        isRefreshCalled = true;
+        if (locationDataUtil.getCityName() != null) {
+            getWeatherFromNet(locationDataUtil.getCityName());
+        }else {
+            getWeatherFromNet(Constants.DEFAULT_CITY);
+        }
     }
 
     @Override
@@ -48,7 +50,7 @@ public class WeatherPresenter implements WeatherContract.Presenter {
         apiInteractor.getWeatherFromGps(getWeatherCallback(), latitude, longitude);
     }
 
-    private Callback<WeatherResponse> getWeatherCallback() {
+    public Callback<WeatherResponse> getWeatherCallback() {
         return new Callback<WeatherResponse>() {
             @Override
             public void onResponse(Call<WeatherResponse> call, Response<WeatherResponse> response) {
@@ -74,7 +76,10 @@ public class WeatherPresenter implements WeatherContract.Presenter {
         getMaxTemperatureValues(weatherResponse.getMain().getTemp_max());
         getHumidityValues(weatherResponse.getMain().getHumidity());
         getCityName(weatherResponse.getName());
-        locationDataUtil.setCityName(weatherResponse.getName());
+        if (!isRefreshCalled) {
+            locationDataUtil.setCityName(weatherResponse.getName());
+            isRefreshCalled = false;
+        }
         getWindValues(weatherResponse.getWind().getSpeed(), weatherResponse.getWind().getDeg());
     }
 
@@ -117,6 +122,11 @@ public class WeatherPresenter implements WeatherContract.Presenter {
                     break;
                 }
             }
+    }
+
+    @Override
+    public void getCityName(String cityName) {
+        view.setCityName(cityName);
     }
 
     @Override
